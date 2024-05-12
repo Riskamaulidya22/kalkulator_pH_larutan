@@ -78,24 +78,26 @@ options = ["Beranda",
            "Konsentrasi Basa",
            "Massa dan Volume Asam",
            "Massa dan Volume Basa",
-           "About This App"
+           "Tentang Aplikasi"
           ]
 
 choice = st.sidebar.radio("Pilih Metode", options)
 
 if choice == "Beranda":
+    st.balloons()
     st.header('👨‍🔬SELAMAT DATANG👩‍🔬')
     st.markdown('---')
     st.write('Aplikasi ini dibuat untuk memudahkan dalam menghitung pH suatu larutan. Silakan pilih metode perhitungan yang sesuai, kemudian ikuti perintah yang ditampilkan di layar.')
     st.markdown('---')
     st.subheader('KELOMPOK 4 (1D - ANALISIS KIMIA)')
     st.write('''ANGGOTA KELOMPOK:
-1. Fairuz Zahrany De Shaula    (2360)
-2. Kesya Melia Adriani         (2360)
+1. Fairuz Zahrany De Shaula    (2360106)
+2. Kesya Melia Adriani         (2360156)
 3. Reza Imelda                 (2360238) 
 4. Riska Maulidya Ainy         (2360242) 
 5. Talitha Syahla Kurniawan    (2360275)
 ''')
+    
     
 elif choice == "Konsentrasi Asam":
     st.subheader("Menghitung [H+] dan pH dari Konsentrasi Asam Kuat dan Asam Lemah")
@@ -116,7 +118,7 @@ elif choice == "Konsentrasi Asam":
             "Asam Perklorat (HClO4)": 1,
             "Asam Iodida (HI)": 1,
             "Asam Iodit (HIO3)": 1,
-            "Asam Periodat (HIO4)": 1
+            "Asam Periodat (HIO4)": 1,
         }
         
         selected_asam_kuat = st.selectbox("Pilih senyawa asam kuat", list(asam_kuat.keys()))
@@ -153,39 +155,22 @@ elif choice == "Konsentrasi Asam":
             st.success(f'pH asam adalah {pH:.2f}')
 
     with tab3:
-        options = ("Asam Kuat", "Asam Lemah")
-        selection = st.selectbox("Pilih jenis senyawa", options=options)
-        if selection == "Asam Kuat": 
-            # Masukkan konsentrasi
-            konsentrasi = st.number_input("Masukkan konsentrasi (M)", format = "%.4f", step=0.0001, key = "H3")
-            st.write("Konsentrasi = ", konsentrasi)
-
-             # Masukkan valensi
-            a = st.number_input("Masukkan valensi", key = "A3")
-            st.write("a = ", a)
-            
-            # Tombol hitung
-            if st.button("Hitung pH", key = "B3"):
-                H_plus, pH = perhitungan_pH_asam_kuat(konsentrasi, a)
-                st.write("[H+] =", round(H_plus, 4))
-                st.write("pH =", round(pH, 2))            
-                st.success(f'pH asam adalah {pH:.2f}')
-
-        elif selection == "Asam Lemah":
-            # Masukkan Ka
-            konstanta_asam = st.number_input("Masukkan Ka", key = "K4")
-            st.write("Ka = ", konstanta_asam)
+        st.subheader("Asam Kuat")
         
-            # Masukkan konsentrasi
-            konsentrasi = st.number_input("Masukkan konsentrasi (M)", format = "%.4f", step=0.0001, key = "H4")
-            st.write("Konsentrasi = ", konsentrasi )
-                
-            # Tombol hitung
-            if st.button ("Hitung pH", key = "T4"):
-                H_plus, pH = perhitungan_pH_asam_lemah(konsentrasi, konstanta_asam)
-                st.write("[H+] =", round(H_plus, 4))
-                st.write("pH =", round(pH, 2))
-                st.success(f'pH asam adalah {pH:.2f}')
+        # Masukkan konsentrasi
+        konsentrasi = st.number_input("Masukkan konsentrasi (M)", format = "%.4f", step=0.0001, key = "H3")
+        st.write("Konsentrasi = ", konsentrasi)
+
+        # Masukkan valensi
+        a = st.number_input("Masukkan valensi (a)", key = "A3")
+        st.write("a = ", a)
+            
+        # Tombol hitung
+        if st.button("Hitung pH", key = "B3"):
+            H_plus, pH = perhitungan_pH_asam_kuat(konsentrasi, a)
+            st.write("[H+] =", round(H_plus, 4))
+            st.write("pH =", round(pH, 2))            
+            st.success(f'pH asam adalah {pH:.2f}')
 
 
 elif choice == "Konsentrasi Basa":
@@ -247,41 +232,23 @@ elif choice == "Konsentrasi Basa":
             st.success(f'pH basa adalah {pH:.2f}')
             
     with tab3:
-        options = ("Basa Kuat", "Basa Lemah")
-        selection = st.selectbox("Pilih jenis senyawa", options=options)
-        if selection == "Basa Kuat": 
-            # Masukkan konsentrasi
-            konsentrasi = st.number_input("Masukkan konsentrasi (M)", format = "%.4f", step=0.0001, key = "H7")
-            st.write("Konsentrasi = ", konsentrasi)
-    
-            # Masukkan valensi
-            a = st.number_input("Masukkan valensi", key = "A7")
-            st.write("a = ", a)
-                
-            # Tombol hitung
-            if st.button("Hitung pH", key = "B7"):
-                OH_minus, pOH, pH = perhitungan_pH_basa_kuat(konsentrasi, a)
-                st.write("[OH-] =", round(OH_minus, 4))
-                st.write("pOH =", round(pOH, 2))
-                st.write("pH =", round(pH, 2))
-                st.success(f'pH basa adalah {pH:.2f}')
-            
-        elif selection == "Basa Lemah":
-            # Masukkan Kb
-            konstanta_basa = st.number_input('Masukkan Kb', key = "K8")
-            st.write("Kb = ", konstanta_basa)
+        st.subheader("Basa Kuat")
         
-            # Masukkan konsentrasi
-            konsentrasi = st.number_input('Masukkan konsentrasi (M)', format = "%.4f", step=0.0001, key = "H8")
-            st.write("Konsentrasi = ", konsentrasi)
-            
-            # Tombol hitung
-            if st.button("Hitung pH", key = "B8"):
-                OH_minus, pOH, pH = perhitungan_pH_basa_lemah(konsentrasi, konstanta_basa)
-                st.write("[OH-] =", round(OH_minus, 4))
-                st.write("pOH =", round(pOH, 2))
-                st.write("pH =", round(pH, 2))
-                st.success(f'pH basa adalah {pH:.2f}')
+        # Masukkan konsentrasi
+        konsentrasi = st.number_input("Masukkan konsentrasi (M)", format = "%.4f", step=0.0001, key = "H7")
+        st.write("Konsentrasi = ", konsentrasi)
+    
+        # Masukkan valensi
+        a = st.number_input("Masukkan valensi (a)", key = "A7")
+        st.write("a = ", a)
+                
+        # Tombol hitung
+        if st.button("Hitung pH", key = "B7"):
+            OH_minus, pOH, pH = perhitungan_pH_basa_kuat(konsentrasi, a)
+            st.write("[OH-] =", round(OH_minus, 4))
+            st.write("pOH =", round(pOH, 2))
+            st.write("pH =", round(pH, 2))
+            st.success(f'pH basa adalah {pH:.2f}')
             
 
 elif choice == "Massa dan Volume Asam":
@@ -551,35 +518,37 @@ elif choice == "Massa dan Volume Basa":
                 st.write("pH =", round(pH, 2))
                 st.success(f'pH basa adalah {pH:.2f}')
                 
-            elif selection == "Basa Lemah":
+        elif selection == "Basa Lemah":
 
-                # Masukkan Kb
-                konstanta_basa = st.number_input("Masukkan Kb", key = "K16")
-                st.write("Kb = ", konstanta_basa)
+            # Masukkan Kb
+            konstanta_basa = st.number_input("Masukkan Kb", key = "K16")
+            st.write("Kb = ", konstanta_basa)
             
-                # Masukkan massa
-                massa = st.number_input("Masukkan massa (g)", format= "%.4f", step=0.0001, key = "M16")
-                st.write("Massa = ", massa)
+            # Masukkan massa
+            massa = st.number_input("Masukkan massa (g)", format= "%.4f", step=0.0001, key = "M16")
+            st.write("Massa = ", massa)
             
-                # Masukkan volume
-                volume = st.number_input("Masukkan volume (mL)", key = "V16")
-                st.write("Volume = ", volume)
+            # Masukkan volume
+            volume = st.number_input("Masukkan volume (mL)", key = "V16")
+            st.write("Volume = ", volume)
 
-                # Masukkan BM
-                BM = st.number_input("Masukkan BM (g/mol)", key = "B16")
-                st.write("BM = ", BM)
+            # Masukkan BM
+            BM = st.number_input("Masukkan BM (g/mol)", key = "B16")
+            st.write("BM = ", BM)
                 
-                # Tombol hitung
-                if st.button("Hitung pH", key = "T14"):
-                    # Konversi volume dari mL ke L
-                    volume_dalam_liter = volume / 1000
-                    OH_minus, pOH, pH = perhitungan_pH_basa_lemah_dengan_massa_volume(massa, volume_dalam_liter, BM, konstanta_basa)
-                    st.write("[OH-] =", round(OH_minus, 5))
-                    st.write("pOH =", round(pOH, 2))
-                    st.write("pH =", round(pH, 2))
-                    st.success(f'pH basa adalah {pH:.2f}')
+            # Tombol hitung
+            if st.button("Hitung pH", key = "T16"):
+                # Konversi volume dari mL ke L
+                volume_dalam_liter = volume / 1000
+                OH_minus, pOH, pH = perhitungan_pH_basa_lemah_dengan_massa_volume(massa, volume_dalam_liter, BM, konstanta_basa)
+                st.write("[OH-] =", round(OH_minus, 5))
+                st.write("pOH =", round(pOH, 2))
+                st.write("pH =", round(pH, 2))
+                st.success(f'pH basa adalah {pH:.2f}')
 
-elif choice == "About This App":
+
+elif choice == "Tentang Aplikasi":
+    
     #Apa itu pH
     st.header("Apa itu pH?")
     st.write('pH adalah ukuran keasaman atau kebasaan suatu larutan kimia. pH adalah nilai numerik yang menyatakan seberapa asam atau basa suatu larutan cair.')
@@ -599,7 +568,6 @@ elif choice == "About This App":
             "PHSKALA.jpg", width=500
             )
     
-    
     #Rumus pH
     st.header("Rumus pH")
     
@@ -609,12 +577,10 @@ elif choice == "About This App":
     latex_pH_asam = "pH = -log [H+]"
     st.write(f"${latex_pH_asam}$")
 
-    
     st.subheader('pH Asam Lemah')
     latex_H_plus_lemah = "[H+] = √(Ma * Ka)"
     st.write(f"${latex_H_plus_lemah}$")
     st.write(f"${latex_pH_asam}$")
-
     
     st.subheader('pH Basa Kuat')
     latex_OH_plus_kuat = "[OH-] = Mb * b"
@@ -623,7 +589,6 @@ elif choice == "About This App":
     st.write(f"${latex_pOH}$")
     latex_pH = "pH = 14-pOH"
     st.write(f"${latex_pH}$")
-
     
     st.subheader('pH Basa Lemah')
     latex_OH_plus_lemah = "[OH-] = √(Mb * Kb)"
@@ -631,23 +596,27 @@ elif choice == "About This App":
     st.write(f"${latex_pOH}$")
     st.write(f"${latex_pH}$")
       
-
     #Cara Menggunakan Kalkulator pH
     st.header("Cara Menggunakan Kalkulator pH")
     st.write('''Dari konsentrasi asam kuat :
 1. Anda diberikan daftar beberapa senyawa asam kuat umum. Silakan pilih salah satunya.
 2. Selanjutnya, masukkan konsentrasi dalam satuan molar (M).
 3. Klik Hitung pH, alat ini akan segera menentukan [H+] dan pH dari ion Hidrogen.
+4. Jika Anda tidak dapat menemukan senyawa asam kuat yang Anda inginkan dalam daftar opsi, pilih Custom. 
+5. Sekarang, Anda harus memasukkan nilai valensi (a) beserta konsentrasinya. Alat akan menghitung nilai [H+] dan pH berdasarkan informasi yang diberikan.
 
 Dari konsentrasi asam lemah :
 1. Anda diminta untuk memasukkan nilai konstanta asam (Ka).
 2. Selanjutnya, masukkan konsentrasi dalam satuan molar (M).
 3. Klik Hitung pH, alat ini akan segera menentukan [H+] dan pH dari ion Hidrogen.
 
+
 Dari konsentrasi basa kuat :
 1. Anda diberikan daftar beberapa senyawa basa kuat umum. Silakan pilih salah satunya.
 2. Selanjutnya, masukkan konsentrasi dalam satuan molar (M).
 3. Klik Hitung pH, alat ini akan segera menentukan [OH-], pOH, dan pH dari ion Hidroksida.
+4. Jika Anda tidak dapat menemukan senyawa basa kuat yang Anda inginkan dalam daftar opsi, pilih Custom. 
+5. Sekarang, Anda harus memasukkan nilai valensi (a) beserta konsentrasinya. Alat akan menghitung nilai [OH-], pOH, dan pH berdasarkan informasi yang diberikan.
 
 Dari konsentrasi basa lemah :
 1. Anda diminta untuk memasukkan nilai konstanta basa (Kb).
@@ -658,19 +627,27 @@ Dari massa dan volume asam kuat :
 1. Anda diberikan daftar beberapa senyawa asam kuat umum. Silakan pilih salah satunya.
 2. Selanjutnya, masukkan massa dalam satuan gram (g) dan masukkan volume dalam satuan mililiter (mL).
 3. Klik Hitung pH, alat ini akan segera menentukan [H+] dan pH dari ion Hidrogen.
+4. Jika Anda tidak dapat menemukan senyawa asam kuat yang Anda inginkan dalam daftar opsi, pilih Custom. 
+5. Sekarang, Anda harus memasukkan nilai massa, volume, BM, dan valensi. Alat akan menghitung nilai [H+] dan pH berdasarkan informasi yang diberikan.
 
 Dari massa dan volume asam lemah :
 1. Anda diberikan daftar beberapa senyawa asam lemah umum. Silakan pilih salah satunya.
 2. Selanjutnya, masukkan nilai konstanta asam (Ka), masukkan massa dalam satuan gram (g) dan masukkan volume dalam satuan mililiter (mL).
 3. Klik Hitung pH, alat ini akan segera menentukan [H+] dan pH dari ion Hidrogen.
+4. Jika Anda tidak dapat menemukan senyawa asam lemah yang Anda inginkan dalam daftar opsi, pilih Custom. 
+5. Sekarang, Anda harus memasukkan nilai massa, volume, BM, dan konstanta asam. Alat akan menghitung nilai [H+] dan pH berdasarkan informasi yang diberikan.
 
 Dari massa dan volume basa kuat :
 1. Anda diberikan daftar beberapa senyawa basa kuat umum. Silakan pilih salah satunya.
 2. Selanjutnya, masukkan massa dalam satuan gram (g) dan masukkan volume dalam satuan mililiter (mL).
 3. Klik Hitung pH, alat ini akan segera menentukan [OH-], pOH, dan pH dari ion Hidrogen.
+4. Jika Anda tidak dapat menemukan senyawa basa kuat yang Anda inginkan dalam daftar opsi, pilih Custom. 
+5. Sekarang, Anda harus memasukkan nilai massa, volume, BM, dan valensi. Alat akan menghitung nilai [OH-], pOH, dan pH berdasarkan informasi yang diberikan.
 
 Dari massa dan volume basa lemah :
 1. Anda diberikan daftar beberapa senyawa basa lemah umum. Silakan pilih salah satunya.
 2. Selanjutnya, masukkan nilai konstanta basa (Kb), masukkan massa dalam satuan gram (g) dan masukkan volume dalam satuan mililiter (mL).
 3. Klik Hitung pH, alat ini akan segera menentukan [OH-], pOH, dan pH dari ion Hidrogen.
+4. Jika Anda tidak dapat menemukan senyawa basa lemah yang Anda inginkan dalam daftar opsi, pilih Custom. 
+5. Sekarang, Anda harus memasukkan nilai massa, volume, BM, dan konstanta basa. Alat akan menghitung nilai [OH-], pOH, dan pH berdasarkan informasi yang diberikan.
 ''')
