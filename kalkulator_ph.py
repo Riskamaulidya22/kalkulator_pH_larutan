@@ -567,6 +567,15 @@ elif choice == "About This App":
 
     #Rumus pH
     st.subheader("Rumus pH")
+    import pandas as pd
+    df = pd.DataFrame(
+        [
+            {"Jenis Senyawa": "Asam Kuat", 
+             "Rumus [H+]": st.write("[H+] = Ma * a"), 
+             "Rumus pH": st.write("pH = -log [H+]")
+            }
+        ]
+    )
     
 
     #Cara Menggunakan Kalkulator pH
