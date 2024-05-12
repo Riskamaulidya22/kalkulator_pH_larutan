@@ -155,20 +155,20 @@ elif choice == "Konsentrasi Asam":
     with tab3:
         st.subheader("Asam Kuat")
     
-            # Masukkan konsentrasi
-            konsentrasi = st.number_input("Masukkan konsentrasi (M)", format = "%.4f", step=0.0001, key = "H3")
-            st.write("Konsentrasi = ", konsentrasi)
+        # Masukkan konsentrasi
+        konsentrasi = st.number_input("Masukkan konsentrasi (M)", format = "%.4f", step=0.0001, key = "H3")
+        st.write("Konsentrasi = ", konsentrasi)
 
-             # Masukkan valensi
-            a = st.number_input("Masukkan valensi", key = "A3")
-            st.write("a = ", a)
+        # Masukkan valensi
+        a = st.number_input("Masukkan valensi", key = "A3")
+        st.write("a = ", a)
             
-            # Tombol hitung
-            if st.button("Hitung pH", key = "B3"):
-                H_plus, pH = perhitungan_pH_asam_kuat(konsentrasi, a)
-                st.write("[H+] =", round(H_plus, 4))
-                st.write("pH =", round(pH, 2))            
-                st.success(f'pH asam adalah {pH:.2f}')
+        # Tombol hitung
+        if st.button("Hitung pH", key = "B3"):
+            H_plus, pH = perhitungan_pH_asam_kuat(konsentrasi, a)
+            st.write("[H+] =", round(H_plus, 4))
+            st.write("pH =", round(pH, 2))            
+            st.success(f'pH asam adalah {pH:.2f}')
 
 
 elif choice == "Konsentrasi Basa":
@@ -231,23 +231,22 @@ elif choice == "Konsentrasi Basa":
             
     with tab3:
         st.subheader("Basa Kuat")
-
-        if selection == "Basa Kuat": 
-            # Masukkan konsentrasi
-            konsentrasi = st.number_input("Masukkan konsentrasi (M)", format = "%.4f", step=0.0001, key = "H7")
-            st.write("Konsentrasi = ", konsentrasi)
+ 
+        # Masukkan konsentrasi
+        konsentrasi = st.number_input("Masukkan konsentrasi (M)", format = "%.4f", step=0.0001, key = "H7")
+        st.write("Konsentrasi = ", konsentrasi)
     
-            # Masukkan valensi
-            a = st.number_input("Masukkan valensi", key = "A7")
-            st.write("a = ", a)
+        # Masukkan valensi
+        a = st.number_input("Masukkan valensi", key = "A7")
+        st.write("a = ", a)
                 
-            # Tombol hitung
-            if st.button("Hitung pH", key = "B7"):
-                OH_minus, pOH, pH = perhitungan_pH_basa_kuat(konsentrasi, a)
-                st.write("[OH-] =", round(OH_minus, 4))
-                st.write("pOH =", round(pOH, 2))
-                st.write("pH =", round(pH, 2))
-                st.success(f'pH basa adalah {pH:.2f}')
+        # Tombol hitung
+        if st.button("Hitung pH", key = "B7"):
+            OH_minus, pOH, pH = perhitungan_pH_basa_kuat(konsentrasi, a)
+            st.write("[OH-] =", round(OH_minus, 4))
+            st.write("pOH =", round(pOH, 2))
+            st.write("pH =", round(pH, 2))
+            st.success(f'pH basa adalah {pH:.2f}')
             
 
 elif choice == "Massa dan Volume Asam":
