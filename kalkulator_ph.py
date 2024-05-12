@@ -457,7 +457,7 @@ elif choice == "Massa dan Volume Basa":
             "Besi (III) Hidroksida (Fe(OH)3)": 107,
             "Kobalt (II) Hidroksida (Co(OH)2)": 92.95,
             "Kobalt (III) Hidroksida (Co(OH)3)": 109.96, 
-            "Raksa (I) Hidroksida (HgoH)": 218,
+            "Raksa (I) Hidroksida (HgOH)": 218,
             "Raksa (II) Hidroksida (Hg(OH)2)": 252,
             "Tembaga (I) Hidroksida (CuOH)": 80.5,
             "Tembaga (II) Hidroksida (Cu(OH)2)": 44.01
