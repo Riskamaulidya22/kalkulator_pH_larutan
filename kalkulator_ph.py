@@ -153,9 +153,8 @@ elif choice == "Konsentrasi Asam":
             st.success(f'pH asam adalah {pH:.2f}')
 
     with tab3:
-        options = ("Asam Kuat")
-        selection = st.selectbox("Pilih jenis senyawa", options=options)
-        if selection == "Asam Kuat": 
+        st.subheader("Asam Kuat")
+    
             # Masukkan konsentrasi
             konsentrasi = st.number_input("Masukkan konsentrasi (M)", format = "%.4f", step=0.0001, key = "H3")
             st.write("Konsentrasi = ", konsentrasi)
@@ -231,8 +230,8 @@ elif choice == "Konsentrasi Basa":
             st.success(f'pH basa adalah {pH:.2f}')
             
     with tab3:
-        options = ("Basa Kuat")
-        selection = st.selectbox("Pilih jenis senyawa", options=options)
+        st.subheader("Basa Kuat")
+
         if selection == "Basa Kuat": 
             # Masukkan konsentrasi
             konsentrasi = st.number_input("Masukkan konsentrasi (M)", format = "%.4f", step=0.0001, key = "H7")
