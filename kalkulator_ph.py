@@ -7,7 +7,7 @@ st.set_page_config(page_title="Kalkulator pH", page_icon=":1234:", layout="wide"
 
 # Fungsi untuk menghitung pH asam kuat
 
-def perhitungan_pH_asam_kuat(konsentrasi, ):
+def perhitungan_pH_asam_kuat(konsentrasi, a):
     H_plus = konsentrasi * a
     pH = -math.log10(H_plus)
     return H_plus, pH
@@ -85,14 +85,14 @@ choice = st.sidebar.radio("Pilih Metode", options)
 
 if choice == "Beranda":
     st.balloons()
-    st.header('👨‍🔬SELAMAT DATANG👩‍🔬')
+    st.header('👨‍🔬 SELAMAT DATANG 👩‍🔬')
     st.markdown('---')
     st.write('Aplikasi ini dibuat untuk memudahkan dalam menghitung pH suatu larutan. Silakan pilih metode perhitungan yang sesuai, kemudian ikuti perintah yang ditampilkan di layar.')
     st.markdown('---')
     st.subheader('KELOMPOK 4 (1D - ANALISIS KIMIA)')
     st.write('''ANGGOTA KELOMPOK:
-1. Fairuz Zahrany De Shaula    (2360106)
-2. Kesya Melia Adriani         (2360156)
+1. Fairuz Zahrany De Shaula    (2360122)
+2. Kesya Melia Andriani        (2360156)
 3. Reza Imelda                 (2360238) 
 4. Riska Maulidya Ainy         (2360242) 
 5. Talitha Syahla Kurniawan    (2360275)
