@@ -7,7 +7,7 @@ st.set_page_config(page_title="Kalkulator pH", page_icon=":1234:", layout="wide"
 
 # Fungsi untuk menghitung pH asam kuat
 
-def perhitungan_pH_asam_kuat(konsentrasi, a):
+def perhitungan_pH_asam_kuat(konsentrasi, ):
     H_plus = konsentrasi * a
     pH = -math.log10(H_plus)
     return H_plus, pH
