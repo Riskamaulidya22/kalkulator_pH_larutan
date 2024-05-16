@@ -63,7 +63,7 @@ def perhitungan_pH_asam_lemah_dengan_massa_volume(massa, volume_dalam_liter, BM,
 # Fungsi untuk menghitung pH basa lemah dengan massa dan volume
 
 def perhitungan_pH_basa_lemah_dengan_massa_volume(massa, volume_dalam_liter, BM, konstanta_basa):
-    konsentrasi = (massa / (volume_dalam_liter * BM)) 
+    konsentrasi = massa / (volume_dalam_liter * BM) 
     OH_minus = math.sqrt(konstanta_basa * konsentrasi)
     pOH = -math.log10(OH_minus)
     pH = 14 - pOH
