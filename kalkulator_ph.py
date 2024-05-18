@@ -2,6 +2,7 @@
 
 import streamlit as st
 import math
+from streamlit_option_menu import option_menu
 
 st.set_page_config(page_title="Kalkulator pH", page_icon=":1234:", layout="wide")
 
@@ -63,29 +64,32 @@ def perhitungan_pH_asam_lemah_dengan_massa_volume(massa, volume_dalam_liter, BM,
 # Fungsi untuk menghitung pH basa lemah dengan massa dan volume
 
 def perhitungan_pH_basa_lemah_dengan_massa_volume(massa, volume_dalam_liter, BM, konstanta_basa):
-    konsentrasi = massa / (volume_dalam_liter * BM) 
+    konsentrasi = (massa / (volume_dalam_liter * BM)) 
     OH_minus = math.sqrt(konstanta_basa * konsentrasi)
     pOH = -math.log10(OH_minus)
     pH = 14 - pOH
     return OH_minus, pOH, pH
-    
-# Judul aplikasi
-st.title("Kalkulator pH Larutan")
 
 # Halaman utama untuk pilihan
-options = ["Beranda",
-           "Konsentrasi Asam",
-           "Konsentrasi Basa",
-           "Massa dan Volume Asam",
-           "Massa dan Volume Basa",
-           "Tentang Aplikasi"
-          ]
+with st.sidebar:
+    selected = option_menu(
+        menu_title = "Menu",
+        options = ["Beranda", 
+            "Konsentrasi Asam", 
+            "Konsentrasi Basa",
+            "Massa dan Volume Asam",
+            "Massa dan Volume Basa",
+            "Tentang Aplikasi"],
+        icons = ["house-door", "calculator", "calculator", "calculator", "calculator", "exclamation-circle"],
+        styles = {"container": {"background-color": "white"},
+        "icon": {"font-size": "20px"}, 
+        "nav-link": {"font-size": "15px", "text-align": "left", "--hover-color": "#eee"},
+        "nav-link-selected": {"background-color": "blue"}}
+    )
 
-choice = st.sidebar.radio("Pilih Metode", options)
-
-if choice == "Beranda":
+if selected == "Beranda":
     st.balloons()
-    st.header('👨‍🔬 SELAMAT DATANG 👩‍🔬')
+    st.title(":blue[👨‍🔬SELAMAT DATANG👩‍🔬]")
     st.markdown('---')
     st.write('Aplikasi ini dibuat untuk memudahkan dalam menghitung pH suatu larutan. Silakan pilih metode perhitungan yang sesuai, kemudian ikuti perintah yang ditampilkan di layar.')
     st.markdown('---')
@@ -99,13 +103,20 @@ if choice == "Beranda":
 ''')
     
     
-elif choice == "Konsentrasi Asam":
+elif selected == "Konsentrasi Asam":
+    st.title(":blue[Kalkulator pH Larutan]")
     st.subheader("Menghitung [H+] dan pH dari Konsentrasi Asam Kuat dan Asam Lemah")
+    
+    selected2 = option_menu(None, ["Asam Kuat", "Asam Lemah", "Custom"], 
+    menu_icon = "cast", default_index=0, orientation="horizontal",
+    styles ={
+        "container": {"background-color": "#E9ECEB"},
+        "nav-link": {"font-size": "15px", "text-align": "center"},
+        "nav-link-selected": {"background-color": "blue"},
+    }
+    )
 
-    tab1, tab2, tab3 = st.tabs(["Asam Kuat", "Asam Lemah", "Custom"])
-
-    with tab1:
-        st.subheader("Asam Kuat")
+    if selected2 == "Asam Kuat":
         # Pilih senyawa asam kuat
         asam_kuat = {
             "Asam Klorida (HCl)": 1,
@@ -120,15 +131,15 @@ elif choice == "Konsentrasi Asam":
             "Asam Iodit (HIO3)": 1,
             "Asam Periodat (HIO4)": 1,
         }
-        
+            
         selected_asam_kuat = st.selectbox("Pilih senyawa asam kuat", list(asam_kuat.keys()))
         a = asam_kuat[selected_asam_kuat]
         st.write("a = ", a)
-        
+            
         # Masukkan konsentrasi
         konsentrasi = st.number_input("Masukkan konsentrasi (M)", format = "%.4f", step=0.0001, key = "H1")
         st.write("Konsentrasi = ", konsentrasi)
-        
+            
         # Tombol hitung
         if st.button("Hitung pH", key = "T1"):
             H_plus, pH = perhitungan_pH_asam_kuat(konsentrasi, a)
@@ -136,9 +147,8 @@ elif choice == "Konsentrasi Asam":
             st.write("pH =", round(pH, 2))            
             st.success(f'pH asam adalah {pH:.2f}')
 
-    with tab2:
-        st.subheader("Asam Lemah")
-
+        
+    elif selected2 == "Asam Lemah":
         # Masukkan Ka
         konstanta_asam = st.number_input("Masukkan Ka", key = "K2")
         st.write("Ka = ", konstanta_asam)
@@ -146,7 +156,7 @@ elif choice == "Konsentrasi Asam":
         # Masukkan konsentrasi
         konsentrasi = st.number_input("Masukkan konsentrasi (M)", format = "%.4f", step=0.0001, key = "H2")
         st.write("Konsentrasi = ", konsentrasi )
-        
+            
         # Tombol hitung
         if st.button ("Hitung pH", key = "T2"):
             H_plus, pH = perhitungan_pH_asam_lemah(konsentrasi, konstanta_asam)
@@ -154,9 +164,9 @@ elif choice == "Konsentrasi Asam":
             st.write("pH =", round(pH, 2))
             st.success(f'pH asam adalah {pH:.2f}')
 
-    with tab3:
+
+    elif selected2 == "Custom":
         st.subheader("Asam Kuat")
-        
         # Masukkan konsentrasi
         konsentrasi = st.number_input("Masukkan konsentrasi (M)", format = "%.4f", step=0.0001, key = "H3")
         st.write("Konsentrasi = ", konsentrasi)
@@ -164,7 +174,7 @@ elif choice == "Konsentrasi Asam":
         # Masukkan valensi
         a = st.number_input("Masukkan valensi (a)", key = "A3")
         st.write("a = ", a)
-            
+                
         # Tombol hitung
         if st.button("Hitung pH", key = "B3"):
             H_plus, pH = perhitungan_pH_asam_kuat(konsentrasi, a)
@@ -173,14 +183,20 @@ elif choice == "Konsentrasi Asam":
             st.success(f'pH asam adalah {pH:.2f}')
 
 
-elif choice == "Konsentrasi Basa":
+elif selected == "Konsentrasi Basa":
+    st.title(":blue[Kalkulator pH Larutan]")
     st.subheader("Menghitung [OH-], pOH, dan pH dari Konsentrasi Basa Kuat dan Basa Lemah")
 
-    tab1, tab2, tab3 = st.tabs(["Basa Kuat", "Basa Lemah", "Custom"])
+    selected3 = option_menu(None, ["Basa Kuat", "Basa Lemah", "Custom"], 
+    menu_icon="cast", default_index=0, orientation="horizontal",
+    styles={
+        "container": {"background-color": "#E9ECEB"},
+        "nav-link": {"font-size": "15px", "text-align": "center"},
+        "nav-link-selected": {"background-color": "blue"},
+    }
+    )
 
-    with tab1:
-        st.subheader("Basa Kuat")
-        
+    if selected3 == "Basa Kuat":
         # Pilih senyawa basa kuat
         basa_kuat = {
             "Natrium Hidroksida (NaOH)": 1,
@@ -212,9 +228,7 @@ elif choice == "Konsentrasi Basa":
             st.write("pH =", round(pH, 2))
             st.success(f'pH basa adalah {pH:.2f}')
 
-    with tab2:
-        st.subheader("Basa Lemah")
-
+    elif selected3 == "Basa Lemah":
         # Masukkan Kb
         konstanta_basa = st.number_input("Masukkan Kb", key = "K6")
         st.write("Kb = ", konstanta_basa)
@@ -231,7 +245,7 @@ elif choice == "Konsentrasi Basa":
             st.write("pH =", round(pH, 2))
             st.success(f'pH basa adalah {pH:.2f}')
             
-    with tab3:
+    elif selected3 == "Custom":
         st.subheader("Basa Kuat")
         
         # Masukkan konsentrasi
@@ -251,14 +265,20 @@ elif choice == "Konsentrasi Basa":
             st.success(f'pH basa adalah {pH:.2f}')
             
 
-elif choice == "Massa dan Volume Asam":
+elif selected == "Massa dan Volume Asam":
+    st.title(":blue[Kalkulator pH Larutan]")
     st.subheader("Menghitung [H+] dan pH dari Massa dan Volume Asam Kuat dan Asam Lemah")
 
-    tab1, tab2, tab3 = st.tabs(["Asam Kuat", "Asam Lemah", "Custom"])
+    selected4 = option_menu(None, ["Asam Kuat", "Asam Lemah", "Custom"], 
+    menu_icon="cast", default_index=0, orientation="horizontal",
+    styles={
+        "container": {"background-color": "#E9ECEB"},
+        "nav-link": {"font-size": "15px", "text-align": "center"},
+        "nav-link-selected": {"background-color": "blue"},
+    }
+    )
 
-    with tab1:
-        st.subheader("Asam Kuat")
-        
+    if selected4 == "Asam Kuat":
         # Pilih senyawa asam kuat
         asam_kuat = {
             "Asam Klorida (HCl)":(36.5, 1),
@@ -298,9 +318,7 @@ elif choice == "Massa dan Volume Asam":
             st.write("pH =", round(pH, 2))
             st.success(f'pH asam adalah {pH:.2f}')
 
-    with tab2:
-        st.subheader("Asam Lemah")
-        
+    if selected4 == "Asam Lemah":
         # Pilih senyawa asam lemah
         asam_lemah = {
             "Asam Asetat (CH3COOH)": 60,
@@ -339,7 +357,7 @@ elif choice == "Massa dan Volume Asam":
             st.write("pH =", round(pH, 2))
             st.success(f'pH asam adalah {pH:.2f}')
 
-    with tab3:
+    if selected4 == "Custom":
         options = ("Asam Kuat", "Asam Lemah")
         selection = st.selectbox("Pilih jenis senyawa", options=options)
         if selection == "Asam Kuat": 
@@ -395,15 +413,21 @@ elif choice == "Massa dan Volume Asam":
                 st.success(f'pH asam adalah {pH:.2f}')
                 
 
-elif choice == "Massa dan Volume Basa":
+elif selected == "Massa dan Volume Basa":
+    st.title(":blue[Kalkulator pH Larutan]")
     st.subheader(
         "Menghitung [OH-], pOH, dan pH dari Massa dan Volume Basa Kuat dan Basa Lemah")
 
-    tab1, tab2, tab3 = st.tabs(["Basa Kuat", "Basa Lemah", "Custom"])
+    selected5 = option_menu(None, ["Basa Kuat", "Basa Lemah", "Custom"], 
+    menu_icon=None, default_index=0, orientation="horizontal",
+    styles={
+        "container": {"background-color": "#E9ECEB"},
+        "nav-link": {"font-size": "15px", "text-align": "center"},
+        "nav-link-selected": {"background-color": "blue"},
+    }
+    )
 
-    with tab1:
-        st.subheader("Basa Kuat")
-
+    if selected5 == "Basa Kuat":
         # Pilih senyawa basa kuat
         basa_kuat = {
             "Natrium Hidroksida (NaOH)":(40, 1),
@@ -442,8 +466,7 @@ elif choice == "Massa dan Volume Basa":
             st.write("pH =", round(pH, 2))
             st.success(f'pH basa adalah {pH:.2f}')
     
-    with tab2:
-        st.subheader("Basa Lemah")
+    if selected5 == "Basa Lemah":
 
         # Pilih senyawa basa lemah
         basa_lemah = {
@@ -490,7 +513,7 @@ elif choice == "Massa dan Volume Basa":
             st.write("pH =", round(pH, 2))
             st.success(f'pH basa adalah {pH:.2f}')
 
-    with tab3:  
+    if selected5 == "Custom":
         options = ("Basa Kuat", "Basa Lemah")
         selection = st.selectbox("Pilih jenis senyawa", options=options)
 
@@ -547,58 +570,69 @@ elif choice == "Massa dan Volume Basa":
                 st.success(f'pH basa adalah {pH:.2f}')
 
 
-elif choice == "Tentang Aplikasi":
-    
-    #Apa itu pH
-    st.header("Apa itu pH?")
-    st.write('pH adalah ukuran keasaman atau kebasaan suatu larutan kimia. pH adalah nilai numerik yang menyatakan seberapa asam atau basa suatu larutan cair.')
+elif selected == "Tentang Aplikasi":
+    selected6 = option_menu(None, ["Materi pH", "Cara Penggunaan", "Contoh Soal"], 
+    icons=["book", "list-task", "journal-text"], 
+    menu_icon="cast", default_index=0, orientation="horizontal",
+    styles={
+        "container": {"background-color": "#E9ECEB"},
+        "nav-link": {"font-size": "15px", "text-align": "center"},
+        "nav-link-selected": {"background-color": "blue"},
+    }
+    )
 
-    #Skala pH
-    st.header("Skala pH")
-    st.write('Skala pH adalah skala logaritmik yang digunakan untuk menentukan keasaman atau kebasaan (alkalinitas) suatu larutan berair. Skalanya berkisar dari 0 hingga 14.')
-    st.write('''
-- Larutan asam memiliki pH kurang dari 7. Semakin rendah pH, ​​semakin asam larutan tersebut. 
-- Larutan basa atau basa memiliki pH lebih besar dari 7. Semakin tinggi pH, semakin basa larutan tersebut. 
-- PH 7 dianggap netral, artinya tidak bersifat asam atau basa. Air murni biasanya dianggap netral, dengan pH 7. 
-''')
-    st.write('Asam meningkatkan konsentrasi ion hidrogen (H+) dalam larutan, sedangkan basa menurunkannya dengan menghasilkan ion hidroksida (OH−) yang bergabung dengan ion hidrogen menghasilkan air.')
-    
-    from PIL import Image
-    st.image(
-            "PHSKALA.jpg", width=500
-            )
-    
-    #Rumus pH
-    st.header("Rumus pH")
-    
-    st.subheader('pH Asam Kuat')
-    latex_H_plus_kuat = "[H+] = Ma * a"
-    st.write(f"${latex_H_plus_kuat}$")
-    latex_pH_asam = "pH = -log [H+]"
-    st.write(f"${latex_pH_asam}$")
+    if selected6 == "Materi pH":
+        #Apa itu pH
+        st.header(":blue[Apa itu pH?]")
+        st.write('pH adalah ukuran keasaman atau kebasaan suatu larutan kimia. pH adalah nilai numerik yang menyatakan seberapa asam atau basa suatu larutan cair.')
 
-    st.subheader('pH Asam Lemah')
-    latex_H_plus_lemah = "[H+] = √(Ma * Ka)"
-    st.write(f"${latex_H_plus_lemah}$")
-    st.write(f"${latex_pH_asam}$")
-    
-    st.subheader('pH Basa Kuat')
-    latex_OH_plus_kuat = "[OH-] = Mb * b"
-    st.write(f"${latex_OH_plus_kuat}$")
-    latex_pOH = "pOH = -log [OH-]"
-    st.write(f"${latex_pOH}$")
-    latex_pH = "pH = 14-pOH"
-    st.write(f"${latex_pH}$")
-    
-    st.subheader('pH Basa Lemah')
-    latex_OH_plus_lemah = "[OH-] = √(Mb * Kb)"
-    st.write(f"${latex_OH_plus_lemah}$")
-    st.write(f"${latex_pOH}$")
-    st.write(f"${latex_pH}$")
-      
-    #Cara Menggunakan Kalkulator pH
-    st.header("Cara Menggunakan Kalkulator pH")
-    st.write('''Dari konsentrasi asam kuat:
+        #Skala pH
+        st.header(":blue[Skala pH]")
+        st.write('Skala pH adalah skala logaritmik yang digunakan untuk menentukan keasaman atau kebasaan (alkalinitas) suatu larutan berair. Skalanya berkisar dari 0 hingga 14.')
+        st.write('''
+    - Larutan asam memiliki pH kurang dari 7. Semakin rendah pH, ​​semakin asam larutan tersebut. 
+    - Larutan basa atau basa memiliki pH lebih besar dari 7. Semakin tinggi pH, semakin basa larutan tersebut. 
+    - PH 7 dianggap netral, artinya tidak bersifat asam atau basa. Air murni biasanya dianggap netral, dengan pH 7. 
+    ''')
+        st.write('Asam meningkatkan konsentrasi ion hidrogen (H+) dalam larutan, sedangkan basa menurunkannya dengan menghasilkan ion hidroksida (OH−) yang bergabung dengan ion hidrogen menghasilkan air.')
+        
+        from PIL import Image
+        st.image(
+                "PHSKALA.jpg", width=500
+                )
+        
+        #Rumus pH
+        st.header(":blue[Rumus pH]")
+        
+        st.subheader('pH Asam Kuat')
+        latex_H_plus_kuat = "[H+] = Ma * a"
+        st.write(f"${latex_H_plus_kuat}$")
+        latex_pH_asam = "pH = -log [H+]"
+        st.write(f"${latex_pH_asam}$")
+
+        st.subheader('pH Asam Lemah')
+        latex_H_plus_lemah = "[H+] = √(Ma * Ka)"
+        st.write(f"${latex_H_plus_lemah}$")
+        st.write(f"${latex_pH_asam}$")
+        
+        st.subheader('pH Basa Kuat')
+        latex_OH_plus_kuat = "[OH-] = Mb * b"
+        st.write(f"${latex_OH_plus_kuat}$")
+        latex_pOH = "pOH = -log [OH-]"
+        st.write(f"${latex_pOH}$")
+        latex_pH = "pH = 14-pOH"
+        st.write(f"${latex_pH}$")
+        
+        st.subheader('pH Basa Lemah')
+        latex_OH_plus_lemah = "[OH-] = √(Mb * Kb)"
+        st.write(f"${latex_OH_plus_lemah}$")
+        st.write(f"${latex_pOH}$")
+        st.write(f"${latex_pH}$")
+        
+    elif selected6 == "Cara Penggunaan":
+        #Cara Menggunakan Kalkulator pH
+        st.header("Cara Menggunakan Kalkulator pH")
+        st.write('''Dari konsentrasi asam kuat:
 1. Anda diberikan daftar beberapa senyawa asam kuat umum. Silakan pilih salah satunya.
 2. Selanjutnya, masukkan konsentrasi dalam satuan molar (M).
 3. Klik Hitung pH, alat ini akan segera menentukan [H+] dan pH dari ion Hidrogen.
@@ -649,4 +683,4 @@ Dari massa dan volume basa lemah:
 3. Klik Hitung pH, alat ini akan segera menentukan [OH-], pOH, dan pH dari ion Hidrogen.
 4. Jika Anda tidak dapat menemukan senyawa basa lemah yang Anda inginkan dalam daftar opsi, pilih Custom. 
 5. Sekarang, Anda harus memasukkan nilai massa, volume, BM, dan konstanta basa. Alat akan menghitung nilai [OH-], pOH, dan pH berdasarkan informasi yang diberikan.
-''')
+        ''')
