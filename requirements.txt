@@ -1,3 +1,2 @@
-streamlit==1.21.0
-streamlit_option_menu==0.3.12
-streamlit >= 0.63
+streamlit
+streamlit_option_menu
