@@ -189,7 +189,6 @@ elif selected == "Konsentrasi Basa":
     selected3 = option_menu(None, ["Basa Kuat", "Basa Lemah", "Custom"], 
     menu_icon="cast", default_index=0, orientation="horizontal",
     styles={
-        "container": {"background-color": "#E9ECEB"},
         "nav-link": {"font-size": "15px", "text-align": "center"},
         "nav-link-selected": {"background-color": "blue"},
     }
@@ -271,7 +270,6 @@ elif selected == "Massa dan Volume Asam":
     selected4 = option_menu(None, ["Asam Kuat", "Asam Lemah", "Custom"], 
     menu_icon="cast", default_index=0, orientation="horizontal",
     styles={
-        "container": {"background-color": "#E9ECEB"},
         "nav-link": {"font-size": "15px", "text-align": "center"},
         "nav-link-selected": {"background-color": "blue"},
     }
@@ -420,7 +418,6 @@ elif selected == "Massa dan Volume Basa":
     selected5 = option_menu(None, ["Basa Kuat", "Basa Lemah", "Custom"], 
     menu_icon=None, default_index=0, orientation="horizontal",
     styles={
-        "container": {"background-color": "#E9ECEB"},
         "nav-link": {"font-size": "15px", "text-align": "center"},
         "nav-link-selected": {"background-color": "blue"},
     }
@@ -574,7 +571,6 @@ elif selected == "Tentang Aplikasi":
     icons=["book", "list-task", "journal-text", "envelope-open-heart"], 
     menu_icon="cast", default_index=0, orientation="horizontal",
     styles={
-        "container": {"background-color": "#E9ECEB"},
         "nav-link": {"font-size": "15px", "text-align": "center"},
         "nav-link-selected": {"background-color": "blue"},
     }
