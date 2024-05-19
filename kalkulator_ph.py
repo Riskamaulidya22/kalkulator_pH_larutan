@@ -82,26 +82,26 @@ with st.sidebar:
             "Tentang Aplikasi"],
         icons = ["house-door", "calculator", "calculator", "calculator", "calculator", "exclamation-circle"],
         styles = {"container": {"background-color": "white"},
-        "icon": {"font-size": "20px"}, 
+        "icon": {"font-size": "15px"}, 
         "nav-link": {"font-size": "15px", "text-align": "left", "--hover-color": "#eee"},
         "nav-link-selected": {"background-color": "blue"}}
     )
 
 if selected == "Beranda":
-    st.balloons()
-    st.title(":blue[👨‍🔬SELAMAT DATANG👩‍🔬]")
+    st.markdown("<h1 style='text-align: center; color: blue;'>🧪SELAMAT DATANG⚗️</h1>", unsafe_allow_html=True)
     st.markdown('---')
-    st.write('Aplikasi ini dibuat untuk memudahkan dalam menghitung pH suatu larutan. Silakan pilih metode perhitungan yang sesuai, kemudian ikuti perintah yang ditampilkan di layar.')
+    st.markdown('<div style="text-align: center;">Aplikasi ini dirancang untuk memudahkan pengguna dalam menghitung pH suatu larutan. Silakan pilih metode perhitungan yang sesuai, kemudian ikuti perintah yang ditampilkan di layar!</div>', unsafe_allow_html=True)
     st.markdown('---')
-    st.subheader('KELOMPOK 4 (1D - ANALISIS KIMIA)')
-    st.write('''ANGGOTA KELOMPOK:
+    st.header(':blue[DIBUAT OLEH:]')
+    st.write('KELOMPOK 4 (1D - ANALISIS KIMIA)')
+    st.write('''
 1. Fairuz Zahrany De Shaula    (2360122)
 2. Kesya Melia Andriani        (2360156)
 3. Reza Imelda                 (2360238) 
 4. Riska Maulidya Ainy         (2360242) 
 5. Talitha Syahla Kurniawan    (2360275)
 ''')
-    
+    st.markdown('---')
     
 elif selected == "Konsentrasi Asam":
     st.title(":blue[Kalkulator pH Larutan]")
@@ -571,8 +571,8 @@ elif selected == "Massa dan Volume Basa":
 
 
 elif selected == "Tentang Aplikasi":
-    selected6 = option_menu(None, ["Materi pH", "Cara Penggunaan", "Contoh Soal"], 
-    icons=["book", "list-task", "journal-text"], 
+    selected6 = option_menu(None, ["Materi pH", "Cara Penggunaan", "Contoh Soal", "Kontak"], 
+    icons=["book", "list-task", "journal-text", "envelope-open-heart"], 
     menu_icon="cast", default_index=0, orientation="horizontal",
     styles={
         "container": {"background-color": "#E9ECEB"},
@@ -584,8 +584,8 @@ elif selected == "Tentang Aplikasi":
     if selected6 == "Materi pH":
         #Apa itu pH
         st.header(":blue[Apa itu pH?]")
-        st.write('pH adalah ukuran keasaman atau kebasaan suatu larutan kimia. pH adalah nilai numerik yang menyatakan seberapa asam atau basa suatu larutan cair.')
-
+        st.markdown('<div style="text-align: justify;">pH (Potential of Hydrogen) adalah ukuran keasaman atau kebasaan suatu larutan kimia. pH adalah nilai numerik yang menyatakan seberapa asam atau basa suatu larutan cair.</div>', unsafe_allow_html=True)
+       
         #Skala pH
         st.header(":blue[Skala pH]")
         st.write('Skala pH adalah skala logaritmik yang digunakan untuk menentukan keasaman atau kebasaan (alkalinitas) suatu larutan berair. Skalanya berkisar dari 0 hingga 14.')
@@ -598,40 +598,17 @@ elif selected == "Tentang Aplikasi":
         
         from PIL import Image
         st.image(
-                "PHSKALA.jpg", width=500
+                "SKALAPH.jpg", width=500
                 )
         
         #Rumus pH
         st.header(":blue[Rumus pH]")
-        
-        st.subheader('pH Asam Kuat')
-        latex_H_plus_kuat = "[H+] = Ma * a"
-        st.write(f"${latex_H_plus_kuat}$")
-        latex_pH_asam = "pH = -log [H+]"
-        st.write(f"${latex_pH_asam}$")
-
-        st.subheader('pH Asam Lemah')
-        latex_H_plus_lemah = "[H+] = √(Ma * Ka)"
-        st.write(f"${latex_H_plus_lemah}$")
-        st.write(f"${latex_pH_asam}$")
-        
-        st.subheader('pH Basa Kuat')
-        latex_OH_plus_kuat = "[OH-] = Mb * b"
-        st.write(f"${latex_OH_plus_kuat}$")
-        latex_pOH = "pOH = -log [OH-]"
-        st.write(f"${latex_pOH}$")
-        latex_pH = "pH = 14-pOH"
-        st.write(f"${latex_pH}$")
-        
-        st.subheader('pH Basa Lemah')
-        latex_OH_plus_lemah = "[OH-] = √(Mb * Kb)"
-        st.write(f"${latex_OH_plus_lemah}$")
-        st.write(f"${latex_pOH}$")
-        st.write(f"${latex_pH}$")
+        st.image(
+                "RUMUSPH.jpg", width=500
+                )
         
     elif selected6 == "Cara Penggunaan":
-        #Cara Menggunakan Kalkulator pH
-        st.header("Cara Menggunakan Kalkulator pH")
+        st.header(":blue[Cara Menggunakan Kalkulator pH Larutan]")
         st.write('''Dari konsentrasi asam kuat:
 1. Anda diberikan daftar beberapa senyawa asam kuat umum. Silakan pilih salah satunya.
 2. Selanjutnya, masukkan konsentrasi dalam satuan molar (M).
@@ -684,3 +661,25 @@ Dari massa dan volume basa lemah:
 4. Jika Anda tidak dapat menemukan senyawa basa lemah yang Anda inginkan dalam daftar opsi, pilih Custom. 
 5. Sekarang, Anda harus memasukkan nilai massa, volume, BM, dan konstanta basa. Alat akan menghitung nilai [OH-], pOH, dan pH berdasarkan informasi yang diberikan.
         ''')
+
+    elif selected6 == "Contoh Soal":
+        st.header(":blue[Contoh Soal 1]")
+        st.header(":blue[Contoh Soal 2]")
+        st.header(":blue[Contoh Soal 3]")
+    
+    elif selected6 == "Kontak":
+        st.header(":blue[Hubungi Kami]")
+        st.write("Silahkan tinggalkan pesan Anda pada kolom yang tersedia.")
+        contact_from = """
+        <form action="https://formsubmit.co/riskamaulidya818@gmail.com" method="POST">
+            <input type="email" name="email" placeholder="Email Anda" required>
+            <textarea name="message" placeholder="Pesan Anda"></textarea>
+            <button type="submit">Send</button>
+        </form>
+        """
+        st.markdown(contact_from, unsafe_allow_html=True)
+        def local_css(file_name):
+            with open(file_name) as f:
+                st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+                
+        local_css("D:\kalkulator_ph\Style\style.css")
