@@ -110,7 +110,7 @@ elif selected == "Konsentrasi Asam":
     selected2 = option_menu(None, ["Asam Kuat", "Asam Lemah", "Custom"], 
     menu_icon = "cast", default_index=0, orientation="horizontal",
     styles ={
-        "container": {"background-color": "#E9ECEB"},
+        "container": {"background-color": "#eeefef"},
         "nav-link": {"font-size": "15px", "text-align": "center"},
         "nav-link-selected": {"background-color": "blue"},
     }
