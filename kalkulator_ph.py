@@ -2,7 +2,7 @@
 
 import streamlit as st
 import math
-from streamlit_option_menu import option_menu
+from streamlit option menu import option menu
 
 st.set_page_config(page_title="Kalkulator pH", page_icon=":1234:", layout="wide")
 
