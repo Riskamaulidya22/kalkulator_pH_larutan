@@ -682,4 +682,4 @@ Dari massa dan volume basa lemah:
             with open(file_name) as f:
                 st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
                 
-        local_css("D:\kalkulator_pH_larutan\style.css")
+        local_css("kalkulator_pH_larutan/style.css")
