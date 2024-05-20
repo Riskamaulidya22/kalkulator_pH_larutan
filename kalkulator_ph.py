@@ -666,7 +666,7 @@ Dari massa dan volume basa lemah:
     Valensi ion OH- = 1
         
     Jawab:
-    [OH-] = M x a
+    [OH-] = Mb x b
     [OH-] = 0,05 M x 1
     [OH-] = 5x10^-2
         
@@ -688,7 +688,7 @@ Dari massa dan volume basa lemah:
     Valensi ion H+ = 1
 
     Jawab:
-    [H+] = M x a
+    [H+] = Ma x a
     [H+] = 2x10^-3 M x 1
     [H+] = 2x10^-3
 
