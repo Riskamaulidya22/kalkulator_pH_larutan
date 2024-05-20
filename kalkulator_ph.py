@@ -659,6 +659,24 @@ Dari massa dan volume basa lemah:
 
     elif selected6 == "Contoh Soal":
         st.header(":blue[Contoh Soal 1]")
+        st.write('''Suatu senyawa HNO3 memiliki konsentrasi sebesar 2x10^-3 M. Berapa pH larutan tersebut?
+              
+    Diketahui:
+    Konsentrasi HNO3 = 2x10^-3 M
+    Valensi ion H+ = 1
+
+    Jawab:
+    [H+] = Ma x a
+    [H+] = 2x10^-3 M x 1
+    [H+] = 2x10^-3
+
+    pH = -log[H+]
+    pH =-log 2x10^-3
+    pH = 3-log 2
+    pH = 2,70 
+    ''')
+        
+        st.header(":blue[Contoh Soal 2]")
         st.write('''Larutan NaOH 0,05 M memiliki pH sebesar?
         
     Diketahui: 
@@ -678,24 +696,6 @@ Dari massa dan volume basa lemah:
     pH = 14-pOH
     pH = 14-1,30
     pH = 12,7
-    ''')
-        
-        st.header(":blue[Contoh Soal 2]")
-        st.write('''Suatu senyawa HNO3 memiliki konsentrasi sebesar 2x10^-3 M. Berapa pH larutan tersebut?
-              
-    Diketahui:
-    Konsentrasi HNO3 = 2x10^-3 M
-    Valensi ion H+ = 1
-
-    Jawab:
-    [H+] = Ma x a
-    [H+] = 2x10^-3 M x 1
-    [H+] = 2x10^-3
-
-    pH = -log[H+]
-    pH =-log 2x10^-3
-    pH = 3-log 2
-    pH = 2,70 
     ''')
         
         st.markdown('---')
