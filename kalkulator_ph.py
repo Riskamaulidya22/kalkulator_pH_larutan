@@ -92,7 +92,7 @@ if selected == "Beranda":
     st.markdown('---')
     st.markdown('<div style="text-align: center;">Aplikasi ini dirancang untuk memudahkan pengguna dalam menghitung pH suatu larutan. Silakan pilih metode perhitungan yang sesuai, kemudian ikuti perintah yang ditampilkan di layar!</div>', unsafe_allow_html=True)
     st.markdown('---')
-    st.header(':blue[DIBUAT OLEH:]')
+    st.markdown('<h2 style="color: blue; ">DIBUAT OLEH:</h2>', unsafe_allow_html=True)
     st.write('KELOMPOK 4 (1D - ANALISIS KIMIA)')
     st.write('''
 1. Fairuz Zahrany De Shaula    (2360122)
@@ -110,6 +110,7 @@ elif selected == "Konsentrasi Asam":
     selected2 = option_menu(None, ["Asam Kuat", "Asam Lemah", "Custom"], 
     menu_icon = "cast", default_index=0, orientation="horizontal",
     styles ={
+        "container": {"background-color": "#E9ECEB"},
         "nav-link": {"font-size": "15px", "text-align": "center"},
         "nav-link-selected": {"background-color": "blue"},
     }
@@ -189,6 +190,7 @@ elif selected == "Konsentrasi Basa":
     selected3 = option_menu(None, ["Basa Kuat", "Basa Lemah", "Custom"], 
     menu_icon="cast", default_index=0, orientation="horizontal",
     styles={
+        "container": {"background-color": "#E9ECEB"},
         "nav-link": {"font-size": "15px", "text-align": "center"},
         "nav-link-selected": {"background-color": "blue"},
     }
@@ -270,6 +272,7 @@ elif selected == "Massa dan Volume Asam":
     selected4 = option_menu(None, ["Asam Kuat", "Asam Lemah", "Custom"], 
     menu_icon="cast", default_index=0, orientation="horizontal",
     styles={
+        "container": {"background-color": "#E9ECEB"},
         "nav-link": {"font-size": "15px", "text-align": "center"},
         "nav-link-selected": {"background-color": "blue"},
     }
@@ -418,6 +421,7 @@ elif selected == "Massa dan Volume Basa":
     selected5 = option_menu(None, ["Basa Kuat", "Basa Lemah", "Custom"], 
     menu_icon=None, default_index=0, orientation="horizontal",
     styles={
+        "container": {"background-color": "#E9ECEB"},
         "nav-link": {"font-size": "15px", "text-align": "center"},
         "nav-link-selected": {"background-color": "blue"},
     }
@@ -571,6 +575,7 @@ elif selected == "Tentang Aplikasi":
     icons=["book", "list-task", "journal-text", "envelope-open-heart"], 
     menu_icon="cast", default_index=0, orientation="horizontal",
     styles={
+        "container": {"background-color": "#E9ECEB"},
         "nav-link": {"font-size": "15px", "text-align": "center"},
         "nav-link-selected": {"background-color": "blue"},
     }
@@ -659,9 +664,49 @@ Dari massa dan volume basa lemah:
 
     elif selected6 == "Contoh Soal":
         st.header(":blue[Contoh Soal 1]")
+        st.write('''Larutan NaOH 0,05 M memiliki pH sebesar?
+        
+    Diketahui: 
+    Konsentrasi NaOH = 0,05 M
+    Valensi ion OH- = 1
+        
+    Jawab:
+    [OH-] = M x a
+    [OH-] = 0,05 M x 1
+    [OH-] = 5x10^-2
+        
+    pOH = -log [OH-]
+    pOH = -log (5x10^-2)
+    pOH = 2-log 5
+    pOH = 1,30
+
+    pH = 14-pOH
+    pH = 14-1,30
+    pH = 12,7
+    ''')
+        
         st.header(":blue[Contoh Soal 2]")
-        st.header(":blue[Contoh Soal 3]")
-    
+        st.write('''Suatu senyawa HNO3 memiliki konsentrasi sebesar 2x10^-3 M. Berapa pH larutan tersebut?
+              
+    Diketahui:
+    Konsentrasi HNO3 = 2x10^-3 M
+    Valensi ion H+ = 1
+
+    Jawab:
+    [H+] = M x a
+    [H+] = 2x10^-3 M x 1
+    [H+] = 2x10^-3
+
+    pH = -log[H+]
+    pH =-log 2x10^-3
+    pH = 3-log 2
+    pH = 2,70 
+    ''')
+        
+        st.markdown('---')
+        st.write('Soal lainnya dapat diakses dengan mengklik tautan dibawah ini.')
+        st.write("[Tautan](https://drive.google.com/drive/folders/1_NOPmnEaZKHsPQHVr6ITyha8-J7rQYrF?usp=sharing)")
+        
     elif selected6 == "Kontak":
         st.header(":blue[Hubungi Kami]")
         st.write("Silahkan tinggalkan pesan Anda pada kolom yang tersedia.")
