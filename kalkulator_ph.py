@@ -92,7 +92,7 @@ if selected == "Beranda":
     st.markdown('---')
     st.markdown('<div style="text-align: center;">Aplikasi ini dirancang untuk memudahkan pengguna dalam menghitung pH suatu larutan. Silakan pilih metode perhitungan yang sesuai, kemudian ikuti perintah yang ditampilkan di layar!</div>', unsafe_allow_html=True)
     st.markdown('---')
-    st.markdown('<h2 style="color: blue; ">DIBUAT OLEH:</h2>', unsafe_allow_html=True)
+    st.markdown('<h3 style="color: blue; ">DIBUAT OLEH:</h3>', unsafe_allow_html=True)
     st.write('KELOMPOK 4 (1D - ANALISIS KIMIA)')
     st.write('''
 1. Fairuz Zahrany De Shaula    (2360122)
