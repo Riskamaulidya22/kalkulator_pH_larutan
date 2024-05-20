@@ -659,6 +659,30 @@ Dari massa dan volume basa lemah:
 
     elif selected6 == "Contoh Soal":
         st.header(":blue[Contoh Soal 1]")
+        st.write("
+        1.	Larutan NaOH 0,05 M memiliki pH sebesar?
+Jawaban:
+Dik : 
+konsentrasi NaOH=0,05 M
+valensi ion OH-= 1
+
+jawab :
+ 
+[OH-] = M x a
+= 0,05 M x 1
+= 0,05=5x10-2
+
+pOH=-log[OH-]
+=-log 5x10-2
+=2-log5
+=1,30
+
+pH=14-pOH
+=14-1,30
+=12,7
+
+                 ")
+        
         st.header(":blue[Contoh Soal 2]")
         st.header(":blue[Contoh Soal 3]")
     
