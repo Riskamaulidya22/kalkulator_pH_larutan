@@ -671,7 +671,7 @@ Dari massa dan volume basa lemah:
     [H+] = 2x10^-3
 
     pH = -log[H+]
-    pH =-log 2x10^-3
+    pH = -log 2x10^-3
     pH = 3-log 2
     pH = 2,70 
     ''')
@@ -695,7 +695,7 @@ Dari massa dan volume basa lemah:
 
     pH = 14-pOH
     pH = 14-1,30
-    pH = 12,7
+    pH = 12,70
     ''')
         
         st.markdown('---')
