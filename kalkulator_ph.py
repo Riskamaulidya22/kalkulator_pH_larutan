@@ -81,18 +81,20 @@ with st.sidebar:
             "Massa dan Volume Basa",
             "Tentang Aplikasi"],
         icons = ["house-door", "calculator", "calculator", "calculator", "calculator", "exclamation-circle"],
-        styles = {"container": {"background-color": "white"},
+        styles = {
         "icon": {"font-size": "15px"}, 
         "nav-link": {"font-size": "15px", "text-align": "left", "--hover-color": "#eee"},
-        "nav-link-selected": {"background-color": "blue"}}
-    )
+        "nav-link-selected": {"background-color": "blue"}})
 
 if selected == "Beranda":
-    st.markdown("<h1 style='text-align: center; color: blue;'>🧪SELAMAT DATANG⚗️</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: blue;'>SELAMAT DATANG</h1>", unsafe_allow_html=True)
+    left, mid, right = st.columns(3)
+    with mid:
+        st.image("D:\kalkulator_ph_larutan\logoapp.gif")    
     st.markdown('---')
-    st.markdown('<div style="text-align: center;">Aplikasi ini dirancang untuk memudahkan pengguna dalam menghitung pH suatu larutan. Silakan pilih metode perhitungan yang sesuai, kemudian ikuti perintah yang ditampilkan di layar!</div>', unsafe_allow_html=True)
+    st.markdown('<div style="text-align: center;">Kalkulator pH Larutan adalah alat online gratis yang dirancang untuk memudahkan pengguna dalam menghitung pH suatu larutan. Silakan pilih metode perhitungan yang sesuai, kemudian ikuti perintah yang ditampilkan di layar!</div>', unsafe_allow_html=True)
     st.markdown('---')
-    st.markdown('<h3 style="color: blue; ">DIBUAT OLEH:</h3>', unsafe_allow_html=True)
+    st.markdown('<h2 style="color: blue; ">DIBUAT OLEH:</h2>', unsafe_allow_html=True)
     st.write('KELOMPOK 4 (1D - ANALISIS KIMIA)')
     st.write('''
 1. Fairuz Zahrany De Shaula    (2360122)
@@ -111,9 +113,7 @@ elif selected == "Konsentrasi Asam":
     menu_icon = "cast", default_index=0, orientation="horizontal",
     styles ={
         "nav-link": {"font-size": "15px", "text-align": "center"},
-        "nav-link-selected": {"background-color": "blue"},
-    }
-    )
+        "nav-link-selected": {"background-color": "blue"},})
 
     if selected2 == "Asam Kuat":
         # Pilih senyawa asam kuat
@@ -190,9 +190,7 @@ elif selected == "Konsentrasi Basa":
     menu_icon="cast", default_index=0, orientation="horizontal",
     styles={
         "nav-link": {"font-size": "15px", "text-align": "center"},
-        "nav-link-selected": {"background-color": "blue"},
-    }
-    )
+        "nav-link-selected": {"background-color": "blue"}})
 
     if selected3 == "Basa Kuat":
         # Pilih senyawa basa kuat
@@ -271,9 +269,7 @@ elif selected == "Massa dan Volume Asam":
     menu_icon="cast", default_index=0, orientation="horizontal",
     styles={
         "nav-link": {"font-size": "15px", "text-align": "center"},
-        "nav-link-selected": {"background-color": "blue"},
-    }
-    )
+        "nav-link-selected": {"background-color": "blue"}})
 
     if selected4 == "Asam Kuat":
         # Pilih senyawa asam kuat
@@ -419,9 +415,7 @@ elif selected == "Massa dan Volume Basa":
     menu_icon=None, default_index=0, orientation="horizontal",
     styles={
         "nav-link": {"font-size": "15px", "text-align": "center"},
-        "nav-link-selected": {"background-color": "blue"},
-    }
-    )
+        "nav-link-selected": {"background-color": "blue"}})
 
     if selected5 == "Basa Kuat":
         # Pilih senyawa basa kuat
@@ -572,9 +566,7 @@ elif selected == "Tentang Aplikasi":
     menu_icon="cast", default_index=0, orientation="horizontal",
     styles={
         "nav-link": {"font-size": "15px", "text-align": "center"},
-        "nav-link-selected": {"background-color": "blue"},
-    }
-    )
+        "nav-link-selected": {"background-color": "blue"}})
 
     if selected6 == "Materi pH":
         #Apa itu pH
@@ -602,6 +594,7 @@ elif selected == "Tentang Aplikasi":
                 "RUMUSPH.jpg", width=500
                 )
         
+        #Cara Penggunaan
     elif selected6 == "Cara Penggunaan":
         st.header(":blue[Cara Menggunakan Kalkulator pH Larutan]")
         st.write('''Dari konsentrasi asam kuat:
@@ -657,26 +650,9 @@ Dari massa dan volume basa lemah:
 5. Sekarang, Anda harus memasukkan nilai massa, volume, BM, dan konstanta basa. Alat akan menghitung nilai [OH-], pOH, dan pH berdasarkan informasi yang diberikan.
         ''')
 
+    #Contoh Soal
     elif selected6 == "Contoh Soal":
         st.header(":blue[Contoh Soal 1]")
-        st.write('''Suatu senyawa HNO3 memiliki konsentrasi sebesar 2x10^-3 M. Berapa pH larutan tersebut?
-              
-    Diketahui:
-    Konsentrasi HNO3 = 2x10^-3 M
-    Valensi ion H+ = 1
-
-    Jawab:
-    [H+] = Ma x a
-    [H+] = 2x10^-3 M x 1
-    [H+] = 2x10^-3
-
-    pH = -log[H+]
-    pH = -log 2x10^-3
-    pH = 3-log 2
-    pH = 2,70 
-    ''')
-        
-        st.header(":blue[Contoh Soal 2]")
         st.write('''Larutan NaOH 0,05 M memiliki pH sebesar?
         
     Diketahui: 
@@ -684,7 +660,7 @@ Dari massa dan volume basa lemah:
     Valensi ion OH- = 1
         
     Jawab:
-    [OH-] = Mb x b
+    [OH-] = M x a
     [OH-] = 0,05 M x 1
     [OH-] = 5x10^-2
         
@@ -695,13 +671,32 @@ Dari massa dan volume basa lemah:
 
     pH = 14-pOH
     pH = 14-1,30
-    pH = 12,70
+    pH = 12,7
+    ''')
+        
+        st.header(":blue[Contoh Soal 2]")
+        st.write('''Suatu senyawa HNO3 memiliki konsentrasi sebesar 2x10^-3 M. Berapa pH larutan tersebut?
+              
+    Diketahui:
+    Konsentrasi HNO3 = 2x10^-3 M
+    Valensi ion H+ = 1
+
+    Jawab:
+    [H+] = M x a
+    [H+] = 2x10^-3 M x 1
+    [H+] = 2x10^-3
+
+    pH = -log[H+]
+    pH =-log 2x10^-3
+    pH = 3-log 2
+    pH = 2,70 
     ''')
         
         st.markdown('---')
         st.write('Soal lainnya dapat diakses dengan mengklik tautan dibawah ini.')
         st.write("[Tautan](https://drive.google.com/drive/folders/1_NOPmnEaZKHsPQHVr6ITyha8-J7rQYrF?usp=sharing)")
         
+    #Kontak
     elif selected6 == "Kontak":
         st.header(":blue[Hubungi Kami]")
         st.write("Silahkan tinggalkan pesan Anda pada kolom yang tersedia.")
