@@ -83,7 +83,7 @@ with st.sidebar:
         icons = ["house-door", "calculator", "calculator", "calculator", "calculator", "exclamation-circle"],
         styles = {
         "icon": {"font-size": "15px"}, 
-        "nav-link": {"font-size": "15px", "text-align": "left", "--hover-color": "#eee"},
+        "nav-link": {"font-size": "15px", "text-align": "left"},
         "nav-link-selected": {"background-color": "blue"}})
 
 if selected == "Beranda":
