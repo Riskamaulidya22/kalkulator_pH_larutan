@@ -670,7 +670,7 @@ Dari massa dan volume basa lemah:
     [OH-] = 5x10^-2
         
     pOH = -log [OH-]
-    pOH = -log (5x10e-2)
+    pOH = -log (5x10^-2)
     pOH = 2-log 5
     pOH = 1,30
 
