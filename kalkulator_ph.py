@@ -84,7 +84,8 @@ with st.sidebar:
         styles = {
         "icon": {"font-size": "15px"}, 
         "nav-link": {"font-size": "15px", "text-align": "left", "--hover-color": "#eee"},
-        "nav-link-selected": {"background-color": "blue"}})
+        "nav-link-selected": {"background-color": "blue"}}
+    )
 
 if selected == "Beranda":
     st.markdown("<h1 style='text-align: center; color: blue;'>SELAMAT DATANG</h1>", unsafe_allow_html=True)
@@ -171,7 +172,7 @@ elif selected == "Konsentrasi Asam":
         st.write("Konsentrasi = ", konsentrasi)
 
         # Masukkan valensi
-        a = st.number_input("Masukkan valensi (a)", key = "A3")
+        a = st.number_input("Masukkan valensi (a)", format = "%i", step=1, key = "A3")
         st.write("a = ", a)
                 
         # Tombol hitung
@@ -249,7 +250,7 @@ elif selected == "Konsentrasi Basa":
         st.write("Konsentrasi = ", konsentrasi)
     
         # Masukkan valensi
-        a = st.number_input("Masukkan valensi (a)", key = "A7")
+        a = st.number_input("Masukkan valensi (a)", format = "%i", step=1, key = "A7")
         st.write("a = ", a)
                 
         # Tombol hitung
@@ -367,14 +368,14 @@ elif selected == "Massa dan Volume Asam":
             st.write("BM = ", BM)
 
             # Masukkan valensi
-            a = st.number_input("Masukkan valensi", key = "A11")
+            a = st.number_input("Masukkan valensi", format = "%i", step=1, key = "A11")
             st.write("a = ", a)
             
             # Tombol hitung
             if st.button("Hitung pH", key = "T11"):
                 # Konversi volume dari mL ke L
                 volume_dalam_liter = volume / 1000
-                H_plus, pH = perhitungan_pH_asam_lemah_dengan_massa_volume(massa, volume_dalam_liter, BM, konstanta_asam)
+                H_plus, pH = perhitungan_pH_asam_lemah_dengan_massa_volume(massa, volume_dalam_liter, BM, a)
                 st.write("[H+] =", round(H_plus, 4))
                 st.write("pH =", round(pH, 2))
                 st.success(f'pH asam adalah {pH:.2f}')
@@ -520,6 +521,10 @@ elif selected == "Massa dan Volume Basa":
             # Masukkan BM
             BM = st.number_input("Masukkan BM (g/mol)", key = "B15")
             st.write("BM = ", BM)
+            
+            # Masukkan valensi
+            a = st.number_input("Masukkan valensi", format = "%i", step=1, key = "A15")
+            st.write("a = ", a)
                     
             # Tombol hitung
             if st.button("Hitung pH", key = "T15"):
