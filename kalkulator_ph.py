@@ -172,7 +172,7 @@ elif selected == "Konsentrasi Asam":
         st.write("Konsentrasi = ", konsentrasi)
 
         # Masukkan valensi
-        a = st.number_input("Masukkan valensi (a)", format = "%f", step=1, key = "A3")
+        a = st.number_input("Masukkan valensi (a)", format = "%.f", step=1, key = "A3")
         st.write("a = ", a)
                 
         # Tombol hitung
@@ -368,7 +368,7 @@ elif selected == "Massa dan Volume Asam":
             st.write("BM = ", BM)
 
             # Masukkan valensi
-            a = st.number_input("Masukkan valensi", format = "%i", step=1, key = "A11")
+            a = st.number_input("Masukkan valensi", format = "str", step=1, key = "A11")
             st.write("a = ", a)
             
             # Tombol hitung
